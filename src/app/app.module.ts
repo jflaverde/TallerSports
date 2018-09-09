@@ -1,9 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
+import { SportModule } from './sports/sport.module';
+import { AppRoutingModule } from './routing-module/app-routing.module';
+import { FormsModule } from '@angular/forms';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -11,10 +14,12 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
+    SportModule,
+    AppRoutingModule,
+    HttpClientModule,
     FormsModule,
-    HttpModule
+    SharedModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

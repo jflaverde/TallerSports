@@ -1,0 +1,10 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2" *ngFor = "let sport of sports">
+            <figure class="figure" routerLink="/sports/{{sport.id}}"> 
+                <figcaption class="title-caption text-center">{{sport.name}}</figcaption>
+            </figure>
+        </div>
+    </div>
+</div>
+<router-outlet></router-outlet>

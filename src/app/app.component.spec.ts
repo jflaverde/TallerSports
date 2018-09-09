@@ -1,34 +1,45 @@
-/* tslint:disable:no-unused-variable */
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { AppRoutingModule } from './routing-module/app-routing.module';
+import { APP_BASE_HREF } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
-import { TestBed, async } from '@angular/core/testing';
+import { AppModule } from './app.module';
+
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
+    let component: AppComponent;
+    let fixture: ComponentFixture<AppComponent>;
+
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            imports: [AppRoutingModule, HttpClientModule, AppModule],
+            declarations: [],
+            providers: [{ provide: APP_BASE_HREF, useValue: '' }]
+        })
+            .compileComponents();
+    }));
+
+    beforeEach(() => {
+        fixture = TestBed.createComponent(AppComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
     });
-    TestBed.compileComponents();
-  });
 
-  it('should create the app', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  }));
+    it('should create the app', async(() => {
+        expect(component).toBeTruthy();
+    }));
 
-  it(`should have as title 'app works!'`, async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('app works!');
-  }));
+    it(`should have as title 'Bookstore'`, async(() => {
+        const app = fixture.debugElement.componentInstance;
+        expect(app.title).toEqual(component.title);
+    }));
 
-  it('should render title in a h1 tag', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('app works!');
-  }));
+    it('should render titles in the navbar', async(() => {
+        fixture.detectChanges();
+        const compiled = fixture.debugElement.nativeElement;
+        expect(compiled.querySelector('#booksTag').textContent).toContain('Books');
+        expect(compiled.querySelector('#authorsTag').textContent).toContain('Authors');
+        expect(compiled.querySelector('#editorialTag').textContent).toContain('Editorials');
+    }));
 });
