@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { SportListComponent } from '../sports/sport-list/sport-list.component';
+import { AthleteListComponent } from '../athlete/athlete-list/athlete-list.component';
 
 const routes: Routes = [
     {
@@ -10,6 +11,15 @@ const routes: Routes = [
             {
                 path: 'list',
                 component: SportListComponent
+            }
+        ]
+    },
+    {
+        path: 'athletes',
+        children: [
+            {
+                path: 'list',
+                component: AthleteListComponent
             }
         ]
     }
